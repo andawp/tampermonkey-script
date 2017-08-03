@@ -12,7 +12,6 @@
     'use strict';
 
     // Your code here...
-    var interval = 3;// 秒，每隔几秒ajax GET下一个帖子（太频繁会被v2ex.com封IP，建议：大于等于3秒）
     function gAjaxGet(url, fnSuccess, fnError, element) {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
@@ -51,19 +50,34 @@
         element.parentElement.append(content);
     }
 
+    function triggerIterm(element) {
+        var item = element.parentElement.querySelector('.item_title');
+        var a = item.querySelector('a');
+        gAjaxGet(a.getAttribute('href'), function(response, element) {
+            // 隐藏预览按钮
+            element.parentElement.querySelector('.v2ex-preview-btn').style.display = 'none';
+            // 获取内容成功
+            appendHtml(response, element);
+        }, function(response, element) {
+            // 获取内容出错（添加自定义错误提示）
+            appendHtml('<div id="Main"><div class="box"><div class="cell"><div class="topic_content">暂未能获取内容！（' +
+                       response +
+                       '）</div></div></div></div>', element);
+        }, item);
+    }
+
     var list = document.querySelectorAll('.item_title');
     list.forEach(function(item, index) {
-        var a = item.querySelector('a');
-        setTimeout(function() {
-            gAjaxGet(a.getAttribute('href'), function(response, element) {
-                // 获取内容成功
-                appendHtml(response, element);
-            }, function(response, element) {
-                // 获取内容出错（添加自定义错误提示）
-                appendHtml('<div id="Main"><div class="box"><div class="cell"><div class="topic_content">暂未能获取内容！（' +
-                           response +
-                           '）</div></div></div></div>', element);
-            }, item);
-        }, index * interval * 1000 + 2000);
+        var div = document.createElement('div');
+        div.style.fontSize = '13px';
+        div.style.marginTop = '1em';
+        var button = document.createElement('button');
+        button.innerHTML = '预览';
+        button.setAttribute('class', 'v2ex-preview-btn');
+        button.addEventListener('click', function() {
+            triggerIterm(div);
+        });
+        div.append(button);
+        item.parentElement.append(div);
     });
 })();
