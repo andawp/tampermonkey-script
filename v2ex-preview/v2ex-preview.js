@@ -33,20 +33,11 @@
         var result = '';
         var parser = new DOMParser();
         var resultDoc = parser.parseFromString(response, 'text/html');
-        var resultContent = resultDoc.querySelector('#Main .box .cell .topic_content');
-        if(resultContent) {
-            result = resultContent.innerText;
-        }
-        var resultSubContent = resultDoc.querySelector('#Main .box .subtle .topic_content');
-        if(resultSubContent) {
-            result += resultSubContent.innerText;
-        }
-        result = result.replace(/\n/g, '<br>');
         // 把正文插入标题后面
         var content = document.createElement('div');
         content.style.fontSize = '13px';
         content.style.marginTop = '1em';
-        content.innerHTML = '<div>' + result + '</div>';
+        content.innerHTML = '<div>' + resultDoc.querySelector('#Main').innerHTML + '</div>';
         element.parentElement.append(content);
     }
 
