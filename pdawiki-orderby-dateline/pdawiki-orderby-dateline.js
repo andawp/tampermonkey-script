@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         pdawiki-orderby-dateline
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @updateURL    https://raw.githubusercontent.com/barrer/tampermonkey-script/master/pdawiki-orderby-dateline/pdawiki-orderby-dateline.js
 // @description  https://github.com/barrer
 // @author       barrer
