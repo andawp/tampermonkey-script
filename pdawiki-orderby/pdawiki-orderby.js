@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         pdawiki-orderby-dateline
+// @name         pdawiki-orderby
 // @namespace    http://tampermonkey.net/
 // @version      0.2
-// @updateURL    https://raw.githubusercontent.com/barrer/tampermonkey-script/master/pdawiki-orderby-dateline/pdawiki-orderby-dateline.js
-// @downloadURL  https://raw.githubusercontent.com/barrer/tampermonkey-script/master/pdawiki-orderby-dateline/pdawiki-orderby-dateline.js
+// @updateURL    https://raw.githubusercontent.com/barrer/tampermonkey-script/master/pdawiki-orderby/pdawiki-orderby.js
+// @downloadURL  https://raw.githubusercontent.com/barrer/tampermonkey-script/master/pdawiki-orderby/pdawiki-orderby.js
 // @description  https://github.com/barrer
 // @author       barrer
 // @match        http://www.pdawiki.com/*
