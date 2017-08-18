@@ -13,7 +13,7 @@ Tampermonkey 是一款免费的浏览器扩展和最为流行的用户脚本管�
 脚本名 | 用途
 -|-
 v2ex-preview|v2ex.com 预览帖子正文
-pdawiki-orderby-dateline|pdawiki.com 按发帖时间排序
+pdawiki-orderby|pdawiki.com 按发帖时间排序
 npr-autoplay|NPR音频自动播放
 
 `Tampermonkey` - `菜单` - `检查用户脚本更新`，即可从github更新最新脚本
