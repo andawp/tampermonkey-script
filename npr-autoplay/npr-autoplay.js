@@ -3,6 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.2
 // @updateURL    https://raw.githubusercontent.com/barrer/tampermonkey-script/master/npr-autoplay/npr-autoplay.js
+// @downloadURL  https://raw.githubusercontent.com/barrer/tampermonkey-script/master/npr-autoplay/npr-autoplay.js
 // @description  https://github.com/barrer
 // @author       barrer
 // @match        http://www.npr.org/*
