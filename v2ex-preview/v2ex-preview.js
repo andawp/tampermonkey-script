@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         v2ex-preview
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.3
 // @updateURL    https://raw.githubusercontent.com/barrer/tampermonkey-script/master/v2ex-preview/v2ex-preview.js
 // @downloadURL  https://raw.githubusercontent.com/barrer/tampermonkey-script/master/v2ex-preview/v2ex-preview.js
 // @description  https://github.com/barrer
@@ -44,7 +44,7 @@
     }
 
     function triggerIterm(element) {
-        var item = element.parentElement.querySelector('.item_title');
+        var item = element.parentElement.parentElement.querySelector('.item_title');
         var a = item.querySelector('a');
         gAjaxGet(a.getAttribute('href'), function(response, element) {
             // 隐藏预览按钮
@@ -61,16 +61,18 @@
 
     var list = document.querySelectorAll('.item_title');
     list.forEach(function(item, index) {
-        var div = document.createElement('div');
+        var div = document.createElement('span');
         div.style.fontSize = '13px';
         div.style.marginTop = '1em';
         var button = document.createElement('button');
         button.innerHTML = '预览';
         button.setAttribute('class', 'v2ex-preview-btn');
+        button.style.marginRight = '.5em';
+        button.style.cursor = 'pointer';
         button.addEventListener('click', function() {
             triggerIterm(div);
         });
         div.append(button);
-        item.parentElement.append(div);
+        item.prepend(div);
     });
 })();
