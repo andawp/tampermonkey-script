@@ -38,7 +38,7 @@
         // 把正文插入标题后面
         var content = document.createElement('div');
         content.style.fontSize = '13px';
-        content.style.marginTop = '1em';
+        content.style.marginTop = '0';
         content.innerHTML = '<div>' + resultDoc.querySelector('#Main').innerHTML + '</div>';
         element.parentElement.append(content);
     }
