@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         jd-tips
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @updateURL    https://raw.githubusercontent.com/barrer/tampermonkey-script/master/jd-tips/jd-tips.js
 // @downloadURL  https://raw.githubusercontent.com/barrer/tampermonkey-script/master/jd-tips/jd-tips.js
 // @description  https://github.com/barrer
@@ -15,8 +15,8 @@
 
     // Your code here...
     function addCss() {
-        var css = '.jd-tips-red,.jd-tips-red *{color:red!important;font-size:26px!important}' +
-            '.jd-tips-green,.jd-tips-green *{color:green!important;font-size:26px!important}',
+        var css = '.jd-tips-red,.jd-tips-red *{color:red!important;font-size:26px!important;line-height:28px!important}' +
+            '.jd-tips-green,.jd-tips-green *{color:green!important;font-size:26px!important;line-height:28px!important}',
             head = document.head || document.getElementsByTagName('head')[0],
             style = document.createElement('style');
 
