@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         v2ex-preview
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.4
 // @updateURL    https://raw.githubusercontent.com/barrer/tampermonkey-script/master/v2ex-preview/v2ex-preview.js
 // @downloadURL  https://raw.githubusercontent.com/barrer/tampermonkey-script/master/v2ex-preview/v2ex-preview.js
 // @description  https://github.com/barrer
@@ -29,12 +29,26 @@
         xmlhttp.send();
     }
 
-    function appendHtml(response, element) {
+    function appendHtml(response, element, url) {
         // console.log(response, element);
         // 获取返回内容正文
         var result = '';
         var parser = new DOMParser();
         var resultDoc = parser.parseFromString(response, 'text/html');
+        // 处理翻页
+        var pageLinks = resultDoc.querySelectorAll('.page_normal'),
+            pageCurrentLinks = resultDoc.querySelectorAll('.page_current');
+        url = url.replace(/#.*$/, '');
+        if(pageLinks)
+            pageLinks.forEach(function(ele){
+                ele.setAttribute('href', url + ele.getAttribute('href'));
+                ele.setAttribute('target', '_blank');
+            });
+        if(pageCurrentLinks)
+            pageCurrentLinks.forEach(function(ele){
+                ele.setAttribute('href', url + ele.getAttribute('href'));
+                ele.setAttribute('target', '_blank');
+            });
         // 把正文插入标题后面
         var content = document.createElement('div');
         content.style.fontSize = '13px';
@@ -45,17 +59,17 @@
 
     function triggerIterm(element) {
         var item = element.parentElement.parentElement.querySelector('.item_title');
-        var a = item.querySelector('a');
-        gAjaxGet(a.getAttribute('href'), function(response, element) {
+        var a = item.querySelector('a'), url = a.getAttribute('href');
+        gAjaxGet(url, function(response, element) {
             // 隐藏预览按钮
             element.parentElement.querySelector('.v2ex-preview-btn').style.display = 'none';
             // 获取内容成功
-            appendHtml(response, element);
+            appendHtml(response, element, url);
         }, function(response, element) {
             // 获取内容出错（添加自定义错误提示）
             appendHtml('<div id="Main"><div class="box"><div class="cell"><div class="topic_content">暂未能获取内容！（' +
                        response +
-                       '）</div></div></div></div>', element);
+                       '）</div></div></div></div>', element, url);
         }, item);
     }
 
