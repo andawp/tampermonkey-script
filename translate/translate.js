@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Translate
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @updateURL    https://raw.githubusercontent.com/barrer/tampermonkey-script/master/translate/translate.js
 // @downloadURL  https://raw.githubusercontent.com/barrer/tampermonkey-script/master/translate/translate.js
 // @description  https://github.com/barrer
@@ -240,7 +240,7 @@
                 }
             });
         },
-        // 生成翻译结果面板 DOM （此时还未添加到页面）
+        // 销毁已经生成的翻译内容面板
         containerDestroy: function () {
             for (var i = this.rendered.length - 1; i >= 0; i--) {
                 if (this.rendered[i] && this.rendered[i].parentNode) {
@@ -248,6 +248,7 @@
                 }
             }
         },
+        // 生成翻译结果面板 DOM （此时还未添加到页面）
         container: function () {
             var div = document.createElement('div');
             div.setAttribute('style', '' +
