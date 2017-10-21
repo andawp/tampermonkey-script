@@ -16,5 +16,6 @@ v2ex-preview|v2ex.com 预览帖子正文
 pdawiki-orderby|pdawiki.com 按发帖时间排序
 npr-autoplay|NPR 音频自动播放
 jd-tips|JD.com 售后政策醒目展示
+translate|划词翻译调用“必应、谷歌、有道、百度”等翻译引擎
 
 `Tampermonkey` - `菜单` - `检查用户脚本更新`，即可从github更新最新脚本
